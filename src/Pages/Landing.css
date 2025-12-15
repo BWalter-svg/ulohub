@@ -1,0 +1,49 @@
+.landing-container {
+  display: flex;
+  justify-content: center;  /* horizontal center */
+  align-items: center;      /* vertical center */
+  height: 100vh;            /* full viewport height */
+  width: 100vw;             /* full viewport width */
+  background-color: #ffffff;
+  overflow: hidden;         /* prevents scroll if logo slightly bigger */
+}
+
+.landing-logo {
+  max-width: 200px;         /* adjust size as needed */
+  max-height: 200px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.landing-footer {
+  position: absolute;
+  bottom: 20px; /* distance from bottom */
+  text-align: center;
+  color: #0ea5e9; /* matches your theme */
+  line-height: 1.2;
+  font-size: 14px;
+}
+
+.landing-footer span,
+.landing-footer strong {
+  display: block; /* stacked */
+}
+
+.landing-footer strong {
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+

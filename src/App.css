@@ -1,0 +1,50 @@
+/* Smooth overall animation */
+* {
+  transition: all 0.25s ease;
+}
+
+/* Soft background for dashboard */
+.dashboard-bg {
+  background: #f8fbff; /* light blue-ish white */
+  min-height: 100vh;
+}
+
+/* Card styling tweaks */
+.dashboard-card {
+  border: 1px solid #e6f0ff;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 105, 255, 0.06);
+}
+
+.dashboard-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 105, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Icon glow on hover */
+.dashboard-card:hover .dashboard-icon {
+  filter: drop-shadow(0px 2px 6px rgba(59, 130, 246, 0.4));
+}
+
+/* Greeting text effect */
+.greeting-title {
+  background: linear-gradient(to right, #0284c7, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Light fade-in animation */
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
