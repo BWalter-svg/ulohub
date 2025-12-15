@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Landing.css";
-import logo from "./assets/ulohub.jpg";
+import logo from "./../assets/ulohub.jpg";
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();
@@ -31,4 +31,5 @@ const Landing: React.FC = () => {
 };
 
 export default Landing;
+
 
