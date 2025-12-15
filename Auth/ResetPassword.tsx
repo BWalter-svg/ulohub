@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import supabase from "../../api/supabaseClient";
+import supabase from "./../api/supabaseClient";
 import "./Auth.css";
 import "./Responsive Auth.css"
 
@@ -122,3 +122,4 @@ export default function ResetPassword() {
     </div>
   );
 }
+
