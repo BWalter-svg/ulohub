@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import supabase from "../../api/supabaseClient";
+import supabase from "./../api/supabaseClient";
 import "./Auth.css";
 
 export default function Login() {
@@ -83,3 +83,4 @@ export default function Login() {
     </div>
   );
 }
+
