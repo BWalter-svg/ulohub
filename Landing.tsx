@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Landing.css";
-import logo from ".assets/ulohub.jpg";
+
+// Note: The import for 'logo' has been removed because 
+// files in the public folder are accessed via absolute paths.
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const Landing: React.FC = () => {
   return (
     <div className="landing-container">
       <img
-        src={logo}
+        src="/ulohub.jpg" 
         alt="Ulohub Logo"
         className="landing-logo"
       />
@@ -31,7 +33,3 @@ const Landing: React.FC = () => {
 };
 
 export default Landing;
-
-
-
-
