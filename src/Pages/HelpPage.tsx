@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FiMail, FiPhone, FiMessageCircle, FiArrowLeft } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import supabase from "./../api/supabaseClient";
+import supabase from "../api/supabaseClient";
 import "./Landlord/landlord.css";
 
 const HelpPage: React.FC = () => {
@@ -139,5 +139,6 @@ const HelpPage: React.FC = () => {
     </div>
   );
 };
+
 
 export default HelpPage;
