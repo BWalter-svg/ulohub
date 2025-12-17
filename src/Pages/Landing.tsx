@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Landing.css";
-import logo from "../../assets/ulohub.jpg";
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ const Landing: React.FC = () => {
   return (
     <div className="landing-container">
       <img
-        src={logo}
+        src="/ulohub.jpg" 
         alt="Ulohub Logo"
         className="landing-logo"
       />
@@ -31,7 +30,3 @@ const Landing: React.FC = () => {
 };
 
 export default Landing;
-
-
-
-
