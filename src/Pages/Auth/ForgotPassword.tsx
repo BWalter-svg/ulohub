@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import supabase from "../../api/supabaseClient";
+import supabase from "./../api/supabaseClient";
 import { FiMail } from "react-icons/fi";
 import "./Auth.css";
 import "./Responsive Auth.css"
@@ -62,5 +62,6 @@ const ForgotPassword: React.FC = () => {
     </div>
   );
 };
+
 
 export default ForgotPassword;
