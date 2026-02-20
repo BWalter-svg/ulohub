@@ -40,14 +40,10 @@ import ExploreHouses from "./Pages/Tenant/ExploreHouses";
 import HouseDetails from "./Pages/Tenant/PropertyDetails";
 import TenantCurrentProperty from "./Pages/Tenant/Current-property";
 
-// --- NEW ADMIN IMPORTS ---
-import AdminVerification from "./Pages/Admin/AdminVerification";
-import AdminRoute from "./Components/AdminRoute"; 
-
 const App: React.FC = () => {
   return (
     <Routes>
-      {/* Public pages (no TopBar/Layout) */}
+      {/* 1. Public pages (no Layout) */}
       <Route path="/" element={<LayoutRoute element={<Landing />} useLayout={false} />} />
       <Route path="/login" element={<LayoutRoute element={<Login />} useLayout={false} />} />
       <Route path="/signup" element={<LayoutRoute element={<Signup />} useLayout={false} />} />
@@ -56,7 +52,7 @@ const App: React.FC = () => {
       <Route path="/onboarding/landlord" element={<LayoutRoute element={<OnboardingLandlord />} useLayout={false} />} />
       <Route path="/onboarding/tenant" element={<LayoutRoute element={<OnboardingTenant />} useLayout={false} />} />
 
-      {/* Landlord pages */}
+      {/* 2. Landlord pages */}
       <Route path="/landlord/dashboard" element={<LayoutRoute element={<LandlordDashboard />} />} />
       <Route path="/landlord/properties" element={<LayoutRoute element={<LandlordPropertyPage />} />} />
       <Route path="/landlord/addproperty" element={<LayoutRoute element={<AddProperty />} />} />
@@ -73,13 +69,13 @@ const App: React.FC = () => {
       <Route path="/landlord/requests" element={<LayoutRoute element={<LandlordRequests />} />} />
       <Route path="/tenant" element={<LayoutRoute element={<TenantmDashboard />} />} />
 
-      {/* Alerts / Settings */}
+      {/* 3. Common pages */}
       <Route path="/notifications" element={<LayoutRoute element={<Alerts />} />} />
       <Route path="/settings" element={<LayoutRoute element={<Settings />} />} />
       <Route path="/messages" element={<LayoutRoute element={<Messages />} />} />
       <Route path="/help" element={<HelpPage />} />
 
-      {/* Tenant pages */}
+      {/* 4. Tenant pages */}
       <Route path="/tenant/dashboard" element={<LayoutRoute element={<TenantDashboard />} />} />
       <Route path="/tenant/explore-houses" element={<LayoutRoute element={<ExploreHouses />} />} />
       <Route path="/house/:id" element={<LayoutRoute element={<HouseDetails />} />} />
@@ -87,22 +83,7 @@ const App: React.FC = () => {
       <Route path="/tenant/maintenance" element={<LayoutRoute element={<TenantMaintenance />} />} />
       <Route path="/tenant/current-property" element={<LayoutRoute element={<TenantCurrentProperty />} />} />
 
-     {/* --- ADMIN SECTION --- */}
-      {/* Ensure AdminRoute is the outermost guard */}
-      <Route 
-        path="/admin/verify" 
-        element={
-          <AdminRoute>
-            <LayoutRoute element={<AdminVerification />} />
-          </AdminRoute>
-        } 
-      />
-
-      {/* --- CATCH-ALL REDIRECT --- */}
-      {/* Only redirect to landing if the path matches nothing else */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-
-      {/* Catch-all - MUST stay at the very bottom */}
+      {/* 5. Catch-all: Redirect to landing */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
