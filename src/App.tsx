@@ -40,19 +40,33 @@ import ExploreHouses from "./Pages/Tenant/ExploreHouses";
 import HouseDetails from "./Pages/Tenant/PropertyDetails";
 import TenantCurrentProperty from "./Pages/Tenant/Current-property";
 
+// --- ADD THESE TWO IMPORTS ---
+import AdminVerification from "./Pages/Admin/AdminVerification";
+import AdminRoute from "./Components/AdminRoute"; 
+
 const App: React.FC = () => {
   return (
     <Routes>
+      {/* --- NEW ADMIN ROUTE (Top Priority) --- */}
+      <Route 
+        path="/admin/verify" 
+        element={
+          <AdminRoute>
+            <LayoutRoute element={<AdminVerification />} />
+          </AdminRoute>
+        } 
+      />
+
       {/* Public pages (no TopBar/Layout) */}
       <Route path="/" element={<LayoutRoute element={<Landing />} useLayout={false} />} />
       <Route path="/login" element={<LayoutRoute element={<Login />} useLayout={false} />} />
       <Route path="/signup" element={<LayoutRoute element={<Signup />} useLayout={false} />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/onboarding/landlord" element={<LayoutRoute element={<OnboardingLandlord />} useLayout={false} />} />
       <Route path="/onboarding/tenant" element={<LayoutRoute element={<OnboardingTenant />} useLayout={false} />} />
 
-      {/* Landlord pages (automatic AppLayout wrapper) */}
+      {/* Landlord pages */}
       <Route path="/landlord/dashboard" element={<LayoutRoute element={<LandlordDashboard />} />} />
       <Route path="/landlord/properties" element={<LayoutRoute element={<LandlordPropertyPage />} />} />
       <Route path="/landlord/addproperty" element={<LayoutRoute element={<AddProperty />} />} />
@@ -83,7 +97,7 @@ const App: React.FC = () => {
       <Route path="/tenant/maintenance" element={<LayoutRoute element={<TenantMaintenance />} />} />
       <Route path="/tenant/current-property" element={<LayoutRoute element={<TenantCurrentProperty />} />} />
 
-      {/* Catch-all */}
+      {/* Catch-all - MUST stay at the very bottom */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
