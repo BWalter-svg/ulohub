@@ -87,7 +87,8 @@ const App: React.FC = () => {
       <Route path="/tenant/maintenance" element={<LayoutRoute element={<TenantMaintenance />} />} />
       <Route path="/tenant/current-property" element={<LayoutRoute element={<TenantCurrentProperty />} />} />
 
-      {/* --- NEW ADMIN ROUTE --- */}
+     {/* --- ADMIN SECTION --- */}
+      {/* Ensure AdminRoute is the outermost guard */}
       <Route 
         path="/admin/verify" 
         element={
@@ -96,6 +97,10 @@ const App: React.FC = () => {
           </AdminRoute>
         } 
       />
+
+      {/* --- CATCH-ALL REDIRECT --- */}
+      {/* Only redirect to landing if the path matches nothing else */}
+      <Route path="*" element={<Navigate to="/" replace />} />
 
       {/* Catch-all - MUST stay at the very bottom */}
       <Route path="*" element={<Navigate to="/" replace />} />
