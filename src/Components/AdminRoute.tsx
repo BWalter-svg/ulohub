@@ -2,62 +2,49 @@ import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import supabase from "../api/supabaseClient";
 
-interface AdminRouteProps {
-  children: React.ReactNode;
-}
-
-const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
-  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
-  const [loading, setLoading] = useState(true);
+const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [status, setStatus] = useState<{loading: boolean; isAdmin: boolean; reason: string}>({
+    loading: true,
+    isAdmin: false,
+    reason: "Initializing"
+  });
 
   useEffect(() => {
-    const checkUserRole = async () => {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-
-        if (!user) {
-          console.log("AdminRoute: No user found");
-          setIsAdmin(false);
-          setLoading(false);
-          return;
-        }
-
-        const { data: profile, error } = await supabase
-          .from("profiles")
-          .select("role")
-          .eq("id", user.id)
-          .single();
-
-        if (error || !profile) {
-          console.error("AdminRoute: Error fetching profile", error);
-          setIsAdmin(false);
-        } else {
-          console.log("AdminRoute: Role found ->", profile.role);
-          // Strict check for 'admin' string
-          setIsAdmin(profile.role === "admin");
-        }
-      } catch (err) {
-        console.error("AdminRoute: Unexpected error", err);
-        setIsAdmin(false);
-      } finally {
-        setLoading(false);
+    async function check() {
+      const { data: { user } } = await supabase.auth.getUser();
+      
+      if (!user) {
+        setStatus({ loading: false, isAdmin: false, reason: "No active session/user found" });
+        return;
       }
-    };
 
-    checkUserRole();
+      const { data: profile, error } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+
+      if (error) {
+        setStatus({ loading: false, isAdmin: false, reason: `DB Error: ${error.message}` });
+        return;
+      }
+
+      if (profile?.role !== 'admin') {
+        setStatus({ loading: false, isAdmin: false, reason: `Role is ${profile?.role}, not admin` });
+        return;
+      }
+
+      setStatus({ loading: false, isAdmin: true, reason: "Success" });
+    }
+    check();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-lg">Verifying Admin Access...</p>
-      </div>
-    );
-  }
+  if (status.loading) return <div className="p-10 text-center">Verifying: {status.reason}...</div>;
 
-  // If not an admin, send them to their respective dashboard instead of landing
-  if (!isAdmin) {
-    console.log("AdminRoute: Access Denied. Redirecting...");
+  if (!status.isAdmin) {
+    console.error("🛑 ADMIN ACCESS DENIED:", status.reason);
+    // Use an alert so you can see it on mobile/without console
+    // window.alert(`Access Denied: ${status.reason}`); 
     return <Navigate to="/landlord/dashboard" replace />;
   }
 
