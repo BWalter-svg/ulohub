@@ -1,3 +1,9 @@
+const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // ADD THIS LINE
+  alert("AdminRoute is actually running!"); 
+  
+  const [status, setStatus] = useState({ loading: true, isAdmin: false, reason: "Init" });
+  // ... rest of the code
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import supabase from "../api/supabaseClient";
