@@ -77,6 +77,15 @@ const App: React.FC = () => {
       <Route path="/messages" element={<LayoutRoute element={<Messages />} />} />
       <Route path="/help" element={<HelpPage />} />
 
+      <Route 
+  path="/admin/verify" 
+  element={
+    <AdminRoute>
+      <LayoutRoute element={<AdminVerification />} />
+    </AdminRoute>
+  } 
+/>
+
       {/* 4. Tenant pages */}
       <Route path="/tenant/dashboard" element={<LayoutRoute element={<TenantDashboard />} />} />
       <Route path="/tenant/explore-houses" element={<LayoutRoute element={<ExploreHouses />} />} />
