@@ -1,6 +1,8 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import LayoutRoute from "./Components/LayoutRoute";
+import AdminRoute from "./Components/AdminRoute";
+import AdminVerification from "./Pages/Admin/AdminVerification";
 
 // Public pages
 import Landing from "./Pages/Landing";
